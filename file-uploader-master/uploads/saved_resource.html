@@ -1,0 +1,13 @@
+
+<!-- saved from url=(0065)https://auth.sports-reference.com/my/?do=auth_session_check&foo=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script type="text/javascript">
+		var xsite_key = localStorage.getItem('session_id') || sessionStorage.getItem('session_id');
+		// console.log("retrieved xsite key in auth.sr.com " + xsite_key);
+		if (xsite_key) {
+			document.location.href = '//auth.sports-reference.com/my/?do=auth_session_check&key=' + xsite_key + '&site=https://www.basketball-reference.com';
+		} else {
+                     var userObject = { 'action' : 'logged_out'};
+		     window.parent.postMessage(userObject, "https://www.basketball-reference.com");
+		}
+	</script>
+<style></style></head><body></body></html>
