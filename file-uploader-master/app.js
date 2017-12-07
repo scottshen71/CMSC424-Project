@@ -31,12 +31,12 @@ function insertionFiles(GUID, name, path, createTime, size){
 	
 
 	var DAGR_GUID = uuidv1();
-	insertionDAGR(DAGR_GUID, createTime); 
+	insertionDAGR(DAGR_GUID, createTime, name); 
 	insertionDAGRFile(DAGR_GUID, GUID);
 	
 }
 
-function insertionDAGR(DAGR_GUID, createTime){
+function insertionDAGR(DAGR_GUID, createTime, DAGR_NAME){
 		oracledb.getConnection(
 	  {
 		user          : "admin",
@@ -47,8 +47,8 @@ function insertionDAGR(DAGR_GUID, createTime){
 	  {
 		if (err) { console.error(err); return; }
 		connection.execute(
-		"INSERT INTO DAGR (GUID, DAGR_SIZE, CREATION_TIME) Values(:1, 0, TO_TIMESTAMP(:2,'YYYY-MM-DD HH24:MI:SS'))", 
-		[DAGR_GUID, createTime],
+		"INSERT INTO DAGR (GUID, DAGR_SIZE, NAME, CREATION_TIME) Values(:1, 0,:2 ,TO_TIMESTAMP(:3,'YYYY-MM-DD HH24:MI:SS'))", 
+		[DAGR_GUID, DAGR_NAME, createTime],
 		  {autoCommit: true},
 		  function(err, result)
 		  {
@@ -237,11 +237,11 @@ app.post('/upload', function(req, res){
     fs.rename(file.path, path.join(form.uploadDir, file.name));
 	fs.stat(file.path, function(err, stats) {
 		//console.log();
-		console.log(format.asString('YYYY-MM-DD HH:MM:SS',stats["ctime"]));
+		//console.log(format.asString('YYYY-MM-DD HH:MM:SS',stats["ctime"]));
 		insertionFiles(uuidv1(), file.name, file.path, getDateTime(stats["ctime"]), stats["size"]);
-		console.log('filePath: '+file.path);
-		console.log('size: ' + stats["size"]);
-		console.log('fileName: '+file.name); 
+		//console.log('filePath: '+file.path);
+		//console.log('size: ' + stats["size"]);
+		//console.log('fileName: '+file.name); 
 		//console.log('timeCreated: '+ Math.floor(stats["ctime"]));
 	});
 	
