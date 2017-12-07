@@ -1,0 +1,41 @@
+
+DROP TABLE DAGR;
+DROP TABLE DAGR_DAGR;
+DROP TABLE DAGR_FILE;
+DROP TABLE FILES;
+
+
+CREATE TABLE DAGR 
+(
+  GUID varchar(255) NOT NULL PRIMARY KEY,
+  NAME varchar(255),
+  CREATION_TIME TIMESTAMP,
+  DAGR_SIZE INT,
+  Annotation varchar(255)
+);
+
+CREATE TABLE DAGR_DAGR
+(
+  GUID_1 varchar(255) NOT NULL,
+  GUID_2 varchar(255) NOT NULL,
+  Annotation varchar(255)
+);
+
+CREATE TABLE DAGR_FILE
+(
+  GUID_DAGR varchar(255) NOT NULL,
+  GUID_FILE varchar(255) NOT NULL,
+  Annotation varchar(255)
+);
+
+CREATE TABLE FILES
+(
+  GUID varchar(255) NOT NULL,
+  FILENAME varchar(255),
+  PATH varchar(255),
+  FILE_SIZE NUMBER(19),
+  CREATION_TIME TIMESTAMP,
+  Annotation varchar(255)
+);
+
+
