@@ -214,10 +214,11 @@ function getDateTime(date) {
 
 }
 
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, 'views/index.html'));
+  res.render(path.join(__dirname, 'views/index.ejs'));
 });
 
 app.post('/upload', function(req, res){
