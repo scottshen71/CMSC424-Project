@@ -7,42 +7,38 @@
 <body>
 <div class="column-layout">
   <div class="main-column">
-    <h2>Main Column</h2>
-    <p>Work</p>
-    <p>Plz</p>
-    <p>I be hapy</p>
-    <p><%=dagr1 %></p>
+    <h2>Main Table</h2>
+    
+
   </div>
 
   <div class="sidebar-one">
-  <form action = "/submit" method = "POST">
-    <h3>Sidebar One</h3>
-    <p>Change Annotation<input type = "text" name = "changeAnn"></p>
-	<input type = "submit" value = "submit">
-	</form>
-	<form action = "/submit" method = "POST">
+  <form action = "submit1" method = "POST">
+    <h3>Annotation And New Category</h3>
+    
+	<input type = "submit" name = "displayDAGR" value = "Display GUIDS">
 	<br></br>
-	<p>Create New Category<input type = "text" name = "newCat"></p>
-	<input type = "submit" value = "submit">
 	</form>
 	
   </div>
 
   <div class="sidebar-two">
-  <form action = "/submit" method = "POST">
-    <h3>Query Search</h3>
+  <form action = "submit" method = "POST">
+    <h3>Query Searches</h3>
     <p>GUID<input type = "text" name = "GUID"></p>
 	<p>File Name <input type = "text" name = "fileName"></p>
 	<p>File Size<input type = "text" name = "File_Size"></p>
 	<p>Timestamp (YYYY-MM-DD HH24:MI:SS)<input type = "text" name = "timeStamp"></p>
 	<p>Annotation<input type = "text" name = "Anno"></p>
-	<p>Time Range(YYYY-MM-DD HH24:MI:SS)<input type = "text" name = "Range">
-		<input type ="text" name = "Range2"</p>
 	<input type ="submit" value = "submit">
+	
+	
+	<p>Time Range Search(YYYY-MM-DD HH24:MI:SS)<input type = "text" name = "Range1">
+		<input type ="text" name = "Range2"</p>
+	<input type ="submit" value = "submit" >
 	</form>
   </div>
 </div>
-
 
 </body>
 </html>

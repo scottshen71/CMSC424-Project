@@ -1,0 +1,90 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="css/style1.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="column-layout">
+  <div class="main-column">
+  <button onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+    <h2>Main Table V2</h2>
+	
+		
+		<table id = "head">
+		<% for(var i=0; i < title.length; i++) { %>
+		   <tr>
+			 <td><%= title[i].id %></td>
+			 <td><%= title[i].name %></td>
+		   </tr>
+		<% } %>
+		</table>
+		<!--
+<ul>
+ <ul>
+       <% dagr_data.forEach(function(dagr_data){ %>
+         <li><%- dagr_data %></li>
+       <%});%>
+   </ul>
+</ul>-->
+
+
+  </div>
+
+  <div class="sidebar-one">
+  <form action = "submit2" method = "POST">
+    <h3>Annotation And New Category</h3>
+	<p>Enter GUID     ( No GUID Is Root)<p/><input type = "text" name = "EditID"></p>
+	Choose One:
+    <p>Change Annotation<input type = "text" name = "changeAnn"><p/>
+	
+	<p>Create New Category<input type = "text" name = "newCat"></p>
+	<input type = "submit" value = "submit">
+	</form>
+	
+  </div>
+
+  <div class="sidebar-two">
+  
+    <h3>Query Searches</h3>
+    <p>GUID<input type = "text" name = "GUID"></p>
+	<p>File Name <input type = "text" name = "fileName"></p>
+	<p>File Size<input type = "text" name = "File_Size"></p>
+	<p>Timestamp (YYYY-MM-DD HH24:MI:SS)<input type = "text" name = "timeStamp"></p>
+	<p>Annotation<input type = "text" name = "Anno"></p>
+	<input type ="submit" value = "submit">
+	
+	<form action = "/submit" method = "POST">
+	<p>Time Range Search(YYYY-MM-DD HH24:MI:SS)<input type = "text" name = "Range1">
+		<input type ="text" name = "Range2"</p>
+	<input type ="submit" value = "submit" >
+	</form>
+  </div>
+</div>
+
+</body>
+<script>var data = <%-JSON.stringify(dagr_data)%>
+console.log(data);
+
+data.forEach((currentData)=>{
+
+var currentRow = document.createElement("tr");
+for(var p in currentData){
+if(currentData.hasOwnProperty(p)){
+var currentEntry = document.createElement("td");
+currentEntry.innerHTML = currentData[p];
+currentRow.appendChild(currentEntry);
+
+}
+}
+document.getElementById("head").appendChild(currentRow);
+})
+
+</script>
+</html>

@@ -10,7 +10,7 @@ def deletion(a):
 	nodesParentDelete = deque(nodesParentDelete)
 	parentsSet = []
 	parentsSet.append(a)
-
+	
 	# Get Parent Nodes
 	while(len(parentsSet) != 0):
 		toCheck = parentsSet.pop()
@@ -73,25 +73,26 @@ def deletion(a):
 	# Deleting Daughter DAGRs
 	nodesDaughterDelete = []
 	nodesDaughterDelete = deque(nodesDaughterDelete)
-	daughterSet = []
-	daughterSet.append(a)
 
+	# Get GUID of Child Node
 	sql = "SELECT GUID_2 FROM DAGR_DAGR WHERE GUID_1 = :1"
 	cur.execute(sql, [a])
 	res = cur.fetchall()
+	for row in res:
+		nodesDaughterDelete.append(row[0])
 
 
 	# Get the GUID_FILE of deleted node
 	sql = "SELECT GUID_FILE FROM DAGR_FILE WHERE GUID_DAGR = :1"
 	cur.execute(sql, [a])
-	res = cur.fetchall()
+	delete_node = cur.fetchall()
 
 	# Delete from DAGR_FILE
 	sql = "DELETE FROM DAGR_FILE WHERE GUID_DAGR = :1"
 	cur.execute(sql, [a])
 
 	# Delete from FILE
-	for row in res:
+	for row in delete_node:
 		sql = "DELETE FROM FILES WHERE GUID = :1"
 		cur.execute(sql, row[0])
 
@@ -115,7 +116,7 @@ def deletion(a):
 	con.commit()
 	cur.close()
 	con.close()
-
+	
 
 if(len(sys.argv) == 2):
 	deletion(sys.argv[1])

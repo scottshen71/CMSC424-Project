@@ -5,7 +5,7 @@ html, body {
 }
 
 input {
-  font-size: 14px;
+  font-size: 12px;
   font-family: Helvetica, sans-serif;
 }
 
@@ -36,6 +36,7 @@ h2, h3 {
 .main-column {
   flex: 3;
   order: 2;
+  font-size-adjust;
 }
 
 .sidebar-one {
